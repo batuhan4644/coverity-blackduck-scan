@@ -51,4 +51,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
           coverity_waitForScan: true
-```
