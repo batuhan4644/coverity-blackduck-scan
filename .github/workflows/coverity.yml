@@ -1,4 +1,3 @@
-```yaml
 name: Coverity CI
 
 on:
@@ -52,7 +51,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
           coverity_waitForScan: true
-
-          # Full scan'de policy ihlali varsa pipeline'ı kırmak için aç.
-          # coverity_policy_view: ${{ github.event_name != 'pull_request' && 'Outstanding Issues' || '' }}
-```
