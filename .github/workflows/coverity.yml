@@ -1,3 +1,4 @@
+```yaml
 name: Coverity CI
 
 on:
@@ -26,20 +27,12 @@ jobs:
       BRIDGE_COVERITY_PRCOMMENT_IMPACTS: High,Medium
 
     steps:
-
       - name: Checkout Source
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Setup Java
-        uses: actions/setup-java@v5
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-
-      - name: Coverity Scan
+      - name: Coverity Buildless Scan
         id: coverity-scan
         uses: blackduck-inc/black-duck-security-scan@v2.11.0
         with:
@@ -53,13 +46,13 @@ jobs:
 
           coverity_local: true
 
-          coverity_clean_command: mvn -B clean
-          coverity_build_command: mvn -B -DskipTests package
-
-          # Full scan'de policy ihlali varsa pipeline'ı kırmak için aç
-          # coverity_policy_view: ${{ github.event_name != 'pull_request' && 'Outstanding Issues' || '' }}
+          coverity_args: '--disable-build-command-inference --language java'
 
           coverity_prComment_enabled: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
           coverity_waitForScan: true
+
+          # Full scan'de policy ihlali varsa pipeline'ı kırmak için aç
+          # coverity_policy_view: ${{ github.event_name != 'pull_request' && 'Outstanding Issues' || '' }}
+```
