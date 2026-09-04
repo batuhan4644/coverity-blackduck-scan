@@ -1,6 +1,6 @@
-package com.demo.test2;
+package com.demo.tests;
 
-public class Test2Vulnerable {
+public class TestsVulnerable {
 
     public static void main(String[] args) {
         String username = new String("admin");

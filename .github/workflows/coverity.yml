@@ -1,4 +1,4 @@
-name: Coverity Build Scan
+name: Coverity CI
 
 on:
   push:
@@ -31,11 +31,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Exclude Paths
-        run: |
-          rm -rf src/main/java/com/demo/test
-          rm -rf src/main/java/com/demo/test2
-
       - name: Setup Java
         uses: actions/setup-java@v5
         with:
@@ -57,8 +52,12 @@ jobs:
 
           coverity_local: true
 
+          # Normal Maven build capture
           coverity_clean_command: mvn -B clean
           coverity_build_command: mvn -B -DskipTests package
+
+          # test ve test2 klasörlerini exclude et
+          coverity_args: '--file-exclude-regex "(^|/)(test|test2)/"'
 
           coverity_prComment_enabled: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
