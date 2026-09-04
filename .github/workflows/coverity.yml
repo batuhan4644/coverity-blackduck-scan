@@ -1,4 +1,3 @@
-```yaml
 name: Coverity CI
 
 on:
@@ -46,17 +45,10 @@ jobs:
 
           coverity_local: true
 
-          # Buildless Java scan
-          # test ve test2 klasörleri capture edilmez / taranmaz
-          coverity_args: '--disable-build-command-inference --language java --file-exclude-regex "(^|[/\\])(test|test2)[/\\]"'
+          coverity_args: '--disable-build-command-inference --file-exclude-regex "(^|[/\\])(test|test2)[/\\]"'
 
-          # PR üzerinde High ve Medium bulguları yorumla
           coverity_prComment_enabled: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-          # Scan tamamlanana kadar bekle
           coverity_waitForScan: true
-
-          # Full scan'de policy ihlali varsa pipeline'ı kırmak için aç
-          # coverity_policy_view: ${{ github.event_name != 'pull_request' && 'Outstanding Issues' || '' }}
 ```

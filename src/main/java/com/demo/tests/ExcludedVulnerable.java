@@ -4,7 +4,14 @@ public class ExcludedVulnerable {
 
     public static void main(String[] args) {
 
-        String username = null;
+        String legacyUser = null;
+
+        printUsername(legacyUser);
+    }
+
+    public static void printUsername(String username) {
+
+        System.out.println("Username length:");
 
         System.out.println(username.length());
     }

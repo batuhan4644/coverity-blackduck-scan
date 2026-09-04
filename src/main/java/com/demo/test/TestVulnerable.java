@@ -1,11 +1,13 @@
-package com.demo;
+ppackage com.demo.test;
 
-public class NormalVulnerable {
+public class TestVulnerable {
+
     public static void main(String[] args) {
+
         String username = new String("admin");
 
         if (username == "admin") {
-            System.out.println("Admin");
+            System.out.println("Admin user");
         }
     }
 }
